@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS
+FOR A PARTICULAR PURPOSE. THIS CODE AND INFORMATION ARE NOT SUPPORTED BY XEBIALABS.
+-->
+<synthetic xmlns="http://www.xebialabs.com/deployit/synthetic" 
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+           xsi:schemaLocation="http://www.xebialabs.com/deployit/synthetic synthetic.xsd">
+    <type type="file.ZippedFiles" 
+          deployable-type="file.ZippedFilesSpec"
+          extends="powershell.ExtensiblePowerShellDeployedArtifact" 
+		  container-type="file.TargetFolder"                    
+          description="Files into a zipped file">
+               
+        <generate-deployable type="file.ZippedFilesSpec" 
+                             description="Zipped file that contains multiple files be deployed at once" 
+                             extends="powershell.BasePowerShellDeployableFileArtifact"/>
+        
+        <!-- hidden -->
+        <property name="createScript" default="zippedfiles/deploy-script.ps1" hidden="true"/>
+		<property name="destroyScript" default="zippedfiles/destroy-script.ps1" hidden="true"/>
+        <property name="createOrder" kind="integer" default="54" hidden="true"/>
+        <property name="createVerb" default="Copy" hidden="true"/>
+    </type>
+	
+	<type type="file.TargetFolder" 
+          extends="powershell.BasePowerShellContainer" 
+          description="Target folder on server to receive all files into the Zipped file">
+      
+        <!-- public -->                
+        <property name="TempPath" description="Temporary path to decompress and copy the files (e.g. c:\FolderName\)" required="true"/>
+        <property name="TargetPath" description="Path to which files must be copied to when being deployed (e.g. c:\FolderName\)" required="true"/>        
+    </type>
+</synthetic>
