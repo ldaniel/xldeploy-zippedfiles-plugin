@@ -39,7 +39,7 @@ function ExtractAndCopyDeployables
 	Write-Host "Done!"
 
 	PrintMessage "Copying new files from temp directory to target directory..."	
-	Write-Host " "
+	Write-Host "`n"
 	Get-ChildItem $_TempPath -Filter *.* | 
 	Foreach-Object {	
 		$fileName = Split-Path -Path $($_.FullName) -Leaf -Resolve
@@ -56,7 +56,7 @@ function ExtractAndCopyDeployables
 		Copy-Item $fileOnTempPath -Destination $_TargetPath
 		
 		Write-Host "Done!"
-		Write-Host " "
+		Write-Host "`n"
 	}
 	Write-Host "-----------------------------------------------------------------------------------------------------"
 }
