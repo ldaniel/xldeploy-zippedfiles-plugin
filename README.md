@@ -1,5 +1,5 @@
 # zippedfiles-plugin
-The SQLCMD plugin is an alternative to the standard XL Deploy file plugin that supports deploying multiples files a remote server folder.
+The ZippedFile plugin is an alternative to the standard XL Deploy file plugin that supports deploying multiples files a remote server folder.
 
 ##Features##
 
