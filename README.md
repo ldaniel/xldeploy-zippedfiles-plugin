@@ -4,4 +4,4 @@ The ZippedFile plugin is an alternative to the standard XL Deploy file plugin th
 ##Features##
 
 * Deploys files to a remote server folder
-* Creates an specific container to configure remot folder
+* Creates an specific container to configure remote folder
