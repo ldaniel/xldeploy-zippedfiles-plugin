@@ -3,6 +3,8 @@ $_TargetPath = $($deployed.container.TargetPath)
 
 function ExecuteDeployment()
 {
+	Write-Host "-----------------------------------------------------------------------------------------------------"
+	Write-Host "Temp path: $_TempPath" 
 	Write-Host "Target path: $_TargetPath" 
 
 	# Call function to delete all previous files from temp folder
@@ -25,18 +27,19 @@ function DeleteTempFolder
 
 function ExtractAndCopyDeployables
 {
-	PrintMessage "Extracting files to temp directory..."
+	PrintMessage "Extracting files from zipped file..."
 	$shell = new-object -com shell.application
 	$zip = $shell.NameSpace($deployed.file)
 	$x = New-Item -Path $_TempPath -ItemType directory
 	foreach($item in $zip.items()) 
 	{
-		Write-Host "Extracting new file $($item.name) to temp directory..."		
-		$shell.Namespace($_TempPath).copyhere($item)		
+		Write-Host "$($item.path)..."
+		$shell.Namespace($_TempPath).copyhere($item)
 	}
 	Write-Host "Done!"
 
-	PrintMessage "Extracting and copying new files to target directory..."	
+	PrintMessage "Copying new files from temp directory to target directory..."	
+	Write-Host " "
 	Get-ChildItem $_TempPath -Filter *.* | 
 	Foreach-Object {	
 		$fileName = Split-Path -Path $($_.FullName) -Leaf -Resolve
@@ -53,7 +56,7 @@ function ExtractAndCopyDeployables
 		Copy-Item $fileOnTempPath -Destination $_TargetPath
 		
 		Write-Host "Done!"
-		Write-Host ""
+		Write-Host " "
 	}
 	Write-Host "-----------------------------------------------------------------------------------------------------"
 }
