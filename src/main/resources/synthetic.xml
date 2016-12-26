@@ -30,6 +30,9 @@ FOR A PARTICULAR PURPOSE. THIS CODE AND INFORMATION ARE NOT SUPPORTED BY XEBIALA
       
         <!-- public -->                
         <property name="TempPath" description="Temporary path to decompress and copy the files (e.g. c:\FolderName\)" required="true"/>
-        <property name="TargetPath" description="Path to which files must be copied to when being deployed (e.g. c:\FolderName\)" required="true"/>        
+        <property name="TargetPath" description="Path to which files must be copied to when being deployed (e.g. c:\FolderName\)" required="true"/>        		
+		
+	<!-- hidden -->
+	<method name="checkcontainer" label="Check folders" description="Check folders creation on server" script="zippedfiles/check-container.ps1"/>
     </type>
 </synthetic>
